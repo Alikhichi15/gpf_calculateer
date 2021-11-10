@@ -199,7 +199,7 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'CREDIT',
+                          'SUBJECT CREDIT',
                           style: kLabelTextStyle,
                         ),
                         Text(
