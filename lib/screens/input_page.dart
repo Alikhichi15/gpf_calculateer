@@ -24,6 +24,7 @@ class _InputPageState extends State<InputPage> {
   int height = 1;
   int weight = 3;
   int age = 15;
+  int agi = 8;
 
   @override
   Widget build(BuildContext context) {
@@ -128,9 +129,9 @@ class _InputPageState extends State<InputPage> {
                       thumbColor: Color(0xFFEB1555),
                       overlayColor: Color(0x29EB1555),
                       thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          RoundSliderThumbShape(enabledThumbRadius: 10.0),
                       overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 30.0),
+                          RoundSliderOverlayShape(overlayRadius: 20.0),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -235,6 +236,49 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
               ],
+            ),
+          ),
+          Expanded(
+            child: ReusableCard(
+              colour: kActiveCardColour,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'LAB CREDIT',
+                    style: kLabelTextStyle,
+                  ),
+                  Text(
+                    agi.toString(),
+                    style: kNumberTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RoundIconButton(
+                        icon: FontAwesomeIcons.minus,
+                        onPressed: () {
+                          setState(
+                            () {
+                              agi--;
+                            },
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      RoundIconButton(
+                          icon: FontAwesomeIcons.plus,
+                          onPressed: () {
+                            setState(() {
+                              agi++;
+                            });
+                          })
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
           BottomButton(
