@@ -7,13 +7,13 @@ class CalculatorBrain {
   double _bmi;
 
   String calculateBMI() {
-    _bmi = (weight / height) * 4;
+    _bmi = (height / weight) * 150;
     return _bmi.toStringAsFixed(1);
   }
 
   String getResult() {
     if (_bmi >= 4) {
-      return 'Excellent';
+      return 'Your Total Amount';
     } else if (_bmi > 3.5) {
       return 'Normal';
     } else {
@@ -23,7 +23,7 @@ class CalculatorBrain {
 
   String getInterpretation() {
     if (_bmi >= 4) {
-      return 'Excellent keep it up.';
+      return '';
     } else if (_bmi >= 3.5) {
       return 'Nice man improve it. ';
     } else {
