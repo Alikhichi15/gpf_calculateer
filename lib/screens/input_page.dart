@@ -1,6 +1,5 @@
 import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
-import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/constants.dart';
@@ -12,6 +11,7 @@ enum Gender {
   male,
   female,
   other,
+  datel,
 }
 
 class InputPage extends StatefulWidget {
@@ -21,10 +21,10 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
-  int height = 1;
-  int weight = 3;
+  int height = 1000;
+  int weight = 2500;
   int age = 15;
-  int agi = 8;
+  int agi = 3000;
 
   @override
   Widget build(BuildContext context) {
@@ -39,64 +39,49 @@ class _InputPageState extends State<InputPage> {
         ],
       )),
       appBar: AppBar(
-        title: Text('CGPA CALCULATOR'),
+        title: Text('GPF CALCULATOR'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Expanded(
-              child: Row(
-            children: <Widget>[
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
+          DropdownButton<DateTime>(
+              hint: Text('Choose Date'),
+              items: ['Choose Starting Date']
+                  .map((e) => DropdownMenuItem<DateTime>(child: Text(e)))
+                  .toList(),
+              onChanged: (DateTime value) {
+                setState(() {
+                  showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2001),
+                          lastDate: DateTime(2099))
+                      .then((date) {
                     setState(() {
-                      selectedGender = Gender.male;
+                      var datel = date;
                     });
-                  },
-                  colour: selectedGender == Gender.male
-                      ? kActiveCardColour
-                      : kInactiveCardColour,
-                  cardChild: IconContent(
-                    icon: FontAwesomeIcons.pager,
-                    label: 'GPA',
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
+                  });
+                });
+              }),
+          DropdownButton<DateTime>(
+              hint: Text('Choose Date'),
+              items: ['Choose Ending Date']
+                  .map((e) => DropdownMenuItem<DateTime>(child: Text(e)))
+                  .toList(),
+              onChanged: (DateTime value) {
+                setState(() {
+                  showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2001),
+                          lastDate: DateTime(2099))
+                      .then((date) {
                     setState(() {
-                      selectedGender = Gender.female;
+                      var datel = date;
                     });
-                  },
-                  colour: selectedGender == Gender.female
-                      ? kActiveCardColour
-                      : kInactiveCardColour,
-                  cardChild: IconContent(
-                    icon: FontAwesomeIcons.pager,
-                    label: 'SGPA',
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.other;
-                    });
-                  },
-                  colour: selectedGender == Gender.other
-                      ? kActiveCardColour
-                      : kInactiveCardColour,
-                  cardChild: IconContent(
-                    icon: FontAwesomeIcons.pager,
-                    label: 'CGPA',
-                  ),
-                ),
-              ),
-            ],
-          )),
+                  });
+                });
+              }),
           Expanded(
             child: ReusableCard(
               colour: kActiveCardColour,
@@ -104,7 +89,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'SEMESTERS',
+                    'Deduction OG Scale',
                     style: kLabelTextStyle,
                   ),
                   Row(
@@ -136,7 +121,7 @@ class _InputPageState extends State<InputPage> {
                     child: Slider(
                       value: height.toDouble(),
                       min: 1.0,
-                      max: 8.0,
+                      max: 6000.0,
                       onChanged: (double newValue) {
                         setState(() {
                           height = newValue.round();
@@ -158,7 +143,7 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          'GP',
+                          'Interest Rate',
                           style: kLabelTextStyle,
                         ),
                         Text(
@@ -192,93 +177,7 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: ReusableCard(
-                    colour: kActiveCardColour,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'SUBJECT CREDIT',
-                          style: kLabelTextStyle,
-                        ),
-                        Text(
-                          age.toString(),
-                          style: kNumberTextStyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RoundIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    age--;
-                                  },
-                                );
-                              },
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            RoundIconButton(
-                                icon: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
-                                    age++;
-                                  });
-                                })
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
               ],
-            ),
-          ),
-          Expanded(
-            child: ReusableCard(
-              colour: kActiveCardColour,
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'LAB CREDIT',
-                    style: kLabelTextStyle,
-                  ),
-                  Text(
-                    agi.toString(),
-                    style: kNumberTextStyle,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      RoundIconButton(
-                        icon: FontAwesomeIcons.minus,
-                        onPressed: () {
-                          setState(
-                            () {
-                              agi--;
-                            },
-                          );
-                        },
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      RoundIconButton(
-                          icon: FontAwesomeIcons.plus,
-                          onPressed: () {
-                            setState(() {
-                              agi++;
-                            });
-                          })
-                    ],
-                  )
-                ],
-              ),
             ),
           ),
           BottomButton(

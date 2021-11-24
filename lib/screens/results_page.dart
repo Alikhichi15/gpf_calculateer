@@ -17,7 +17,7 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CGPA CALCULATOR'),
+        title: Text('GPF CALCULATOR'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,7 +28,7 @@ class ResultsPage extends StatelessWidget {
               padding: EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
               child: Text(
-                'Your Result',
+                'Total Payment',
                 style: kTitleTextStyle,
               ),
             ),
