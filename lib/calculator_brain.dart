@@ -7,7 +7,7 @@ class CalculatorBrain {
   double _bmi;
 
   String calculateBMI() {
-    _bmi = (height / weight) * 150;
+    _bmi = (height / weight) * 160;
     return _bmi.toStringAsFixed(1);
   }
 
